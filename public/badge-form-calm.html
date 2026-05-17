@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Correction de Badgeage — Valeo</title>
+<style>
+  /* ── CALM PALETTE: Deep Navy/Slate instead of black ── */
+  :root {
+    --bg:       #1a2035;   /* deep calm navy */
+    --surface:  #212840;   /* slightly lighter */
+    --surface2: #2a3356;   /* card surface */
+    --border:   rgba(255,255,255,0.08);
+    --border-g: rgba(74,163,120,0.3);
+    --text:     #e8eaf2;
+    --muted:    #8892b0;
+    --accent:   #4aa378;   /* Valeo green — muted, calm */
+    --accent-b: #5cb88a;
+    --warn:     rgba(234,179,8,0.12);
+    --warn-b:   rgba(234,179,8,0.3);
+    --warn-t:   #fbbf24;
+    --red:      #e07070;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'Segoe UI', system-ui, sans-serif;
+    font-size: 15px;
+    min-height: 100vh;
+  }
+
+  /* Subtle grid texture */
+  body::before {
+    content: '';
+    position: fixed; inset: 0; pointer-events: none; z-index: 0;
+    background-image:
+      linear-gradient(rgba(74,163,120,0.03) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(74,163,120,0.03) 1px, transparent 1px);
+    background-size: 48px 48px;
+  }
+
+  .page { position: relative; z-index: 1; max-width: 620px; margin: 0 auto; padding: 40px 20px 80px; }
+
+  /* Header */
+  .header { text-align: center; margin-bottom: 32px; }
+  .logo-wrap { display: inline-flex; align-items: center; gap: 12px; margin-bottom: 18px; }
+  .logo-box {
+    width: 52px; height: 52px; border-radius: 10px;
+    background: var(--accent); display: flex; align-items: center; justify-content: center;
+    font-size: 1.6rem; font-weight: 700; color: #fff; letter-spacing: -1px;
+    box-shadow: 0 0 24px rgba(74,163,120,0.35);
+  }
+  .logo-text { text-align: left; }
+  .logo-text .brand { font-size: 1.3rem; font-weight: 600; color: var(--text); }
+  .logo-text .sub { font-size: 0.72rem; color: var(--muted); letter-spacing: 0.12em; text-transform: uppercase; }
+
+  .badge-label {
+    display: inline-flex; align-items: center; gap: 8px;
+    border: 1px solid var(--border-g); border-radius: 999px;
+    padding: 5px 14px; margin-bottom: 20px;
+    font-size: 0.7rem; color: var(--accent); letter-spacing: 0.12em; text-transform: uppercase;
+  }
+  .dot { width: 6px; height: 6px; border-radius: 50%; background: var(--accent); display: inline-block;
+    box-shadow: 0 0 8px var(--accent); animation: pulse 2s ease infinite; }
+  @keyframes pulse { 0%,100%{opacity:1} 50%{opacity:.5} }
+
+  .header h1 { font-size: clamp(1.8rem, 5vw, 2.4rem); font-weight: 700; line-height: 1.2; margin-bottom: 10px; }
+  .header h1 span { color: var(--accent); }
+  .header p { color: var(--muted); font-size: 0.88rem; line-height: 1.6; max-width: 420px; margin: 0 auto; }
+
+  /* Steps */
+  .steps { display: flex; justify-content: center; gap: 6px; margin: 24px 0; flex-wrap: wrap; }
+  .step {
+    display: flex; flex-direction: column; align-items: center; gap: 5px;
+    background: var(--surface); border: 1px solid var(--border);
+    border-radius: 10px; padding: 10px 14px; min-width: 72px;
+  }
+  .step-icon { width: 32px; height: 32px; border-radius: 8px; background: var(--surface2);
+    display: flex; align-items: center; justify-content: center; font-size: 1rem; }
+  .step-icon.green { background: rgba(74,163,120,0.15); }
+  .step label { font-size: 0.6rem; color: var(--muted); text-align: center; text-transform: uppercase; letter-spacing: 0.08em; }
+
+  /* Warning */
+  .warn-box {
+    background: var(--warn); border: 1px solid var(--warn-b); border-radius: 10px;
+    padding: 14px 18px; margin-bottom: 24px;
+    display: flex; align-items: flex-start; gap: 12px; font-size: 0.85rem;
+  }
+  .warn-icon { font-size: 1.2rem; flex-shrink: 0; margin-top: 1px; }
+  .warn-box strong { color: var(--warn-t); }
+  .warn-box p { color: var(--muted); font-size: 0.82rem; margin-top: 3px; }
+
+  /* Card */
+  .card {
+    background: var(--surface); border: 1px solid var(--border);
+    border-radius: 14px; overflow: hidden; margin-bottom: 24px;
+  }
+  .card-header {
+    display: flex; align-items: center; gap: 12px;
+    padding: 18px 22px; border-bottom: 1px solid var(--border);
+  }
+  .card-icon { width: 36px; height: 36px; border-radius: 8px; background: var(--surface2);
+    display: flex; align-items: center; justify-content: center; font-size: 1.1rem; }
+  .card-header h2 { font-size: 1rem; font-weight: 600; }
+  .card-header p { font-size: 0.75rem; color: var(--muted); margin-top: 2px; }
+  .card-body { padding: 22px; }
+
+  /* Section within card */
+  .field-section { margin-bottom: 24px; }
+  .field-section:last-child { margin-bottom: 0; }
+  .section-title {
+    font-size: 0.65rem; font-weight: 600; letter-spacing: 0.18em; text-transform: uppercase;
+    color: var(--accent); margin-bottom: 14px; padding-bottom: 8px;
+    border-bottom: 1px solid var(--border-g);
+  }
+
+  .row { display: grid; gap: 12px; margin-bottom: 12px; }
+  .row.cols-3 { grid-template-columns: 1fr 1fr 1fr; }
+  .row.cols-2 { grid-template-columns: 1fr 1fr; }
+  .row.cols-1 { grid-template-columns: 1fr; }
+
+  .field label {
+    display: block; font-size: 0.72rem; color: var(--muted);
+    margin-bottom: 6px; letter-spacing: 0.04em;
+  }
+  .field label .req { color: var(--red); margin-left: 2px; }
+  .field input {
+    width: 100%; padding: 10px 13px;
+    background: var(--surface2); border: 1px solid var(--border);
+    border-radius: 8px; color: var(--text); font-size: 0.88rem;
+    outline: none; transition: border-color 0.2s, box-shadow 0.2s;
+    font-family: inherit;
+  }
+  .field input:focus {
+    border-color: var(--accent);
+    box-shadow: 0 0 0 3px rgba(74,163,120,0.12);
+  }
+  .field input::placeholder { color: #4a5568; }
+
+  /* Divider */
+  .divider { height: 1px; background: var(--border); margin: 20px 0; }
+
+  /* Submit */
+  .submit-btn {
+    width: 100%; padding: 14px;
+    background: var(--accent); color: #fff;
+    font-size: 0.92rem; font-weight: 600; border: none;
+    border-radius: 10px; cursor: pointer;
+    transition: background 0.2s, transform 0.15s, box-shadow 0.2s;
+    letter-spacing: 0.02em;
+  }
+  .submit-btn:hover {
+    background: var(--accent-b);
+    transform: translateY(-1px);
+    box-shadow: 0 6px 24px rgba(74,163,120,0.35);
+  }
+  .submit-note { text-align: center; font-size: 0.72rem; color: var(--muted); margin-top: 10px; }
+
+  @media (max-width: 480px) {
+    .row.cols-3 { grid-template-columns: 1fr; }
+    .row.cols-2 { grid-template-columns: 1fr; }
+    .steps { gap: 4px; }
+    .step { min-width: 60px; padding: 8px 10px; }
+  }
+</style>
+</head>
+<body>
+<div class="page">
+
+  <!-- Header -->
+  <div class="header">
+    <div class="logo-wrap">
+      <div class="logo-box">V</div>
+      <div class="logo-text">
+        <div class="brand">Valeo</div>
+        <div class="sub">Tunis, Tunisia</div>
+      </div>
+    </div>
+    <div style="display:flex;justify-content:center;margin-bottom:16px">
+      <div class="badge-label"><span class="dot"></span> PORTAIL RH · CORRECTION BADGEAGE</div>
+    </div>
+    <h1>Formulaire de <span>correction</span><br>de badgeage</h1>
+    <p>Soumettez votre demande de correction d'horaire. Elle sera transmise automatiquement à chaque niveau hiérarchique via n8n pour validation séquentielle.</p>
+  </div>
+
+  <!-- Steps -->
+  <div class="steps">
+    <div class="step">
+      <div class="step-icon green">👤</div>
+      <label>Employé</label>
+    </div>
+    <div class="step">
+      <div class="step-icon">👔</div>
+      <label>Chef N+1</label>
+    </div>
+    <div class="step">
+      <div class="step-icon">🏢</div>
+      <label>Resp. N+2</label>
+    </div>
+    <div class="step">
+      <div class="step-icon">🏛️</div>
+      <label>Directeur N+3</label>
+    </div>
+    <div class="step">
+      <div class="step-icon">📋</div>
+      <label>DRH N+4</label>
+    </div>
+    <div class="step">
+      <div class="step-icon green">✅</div>
+      <label>Validé</label>
+    </div>
+  </div>
+
+  <!-- Warning -->
+  <div class="warn-box">
+    <div class="warn-icon">⚠️</div>
+    <div>
+      <p>Aucune correction de badgeage n'est autorisée les <strong>Dimanches</strong>. Les demandes soumises un dimanche seront automatiquement rejetées.</p>
+    </div>
+  </div>
+
+  <!-- Form card -->
+  <div class="card">
+    <div class="card-header">
+      <div class="card-icon">📋</div>
+      <div>
+        <h2>Demande de Correction de Badgeage</h2>
+        <p>Remplissez tous les champs obligatoires · Circuit 4 niveaux · Automatisé via n8n</p>
+      </div>
+    </div>
+    <div class="card-body">
+
+      <!-- Identity -->
+      <div class="field-section">
+        <div class="section-title">Identité de l'employé</div>
+        <div class="row cols-3">
+          <div class="field">
+            <label>Nom <span class="req">*</span></label>
+            <input type="text" placeholder="Nom de famille">
+          </div>
+          <div class="field">
+            <label>Prénom <span class="req">*</span></label>
+            <input type="text" placeholder="Prénom">
+          </div>
+          <div class="field">
+            <label>Matricule <span class="req">*</span></label>
+            <input type="text" placeholder="Numéro">
+          </div>
+        </div>
+      </div>
+
+      <!-- Date -->
+      <div class="field-section">
+        <div class="section-title">Jour concerné</div>
+        <div class="row cols-1">
+          <div class="field">
+            <label>Date <span class="req">*</span></label>
+            <input type="date">
+          </div>
+        </div>
+      </div>
+
+      <!-- Hours -->
+      <div class="field-section">
+        <div class="section-title">Horaires de présence</div>
+        <div class="row cols-2">
+          <div class="field">
+            <label>Heure entrée 1 <span class="req">*</span></label>
+            <input type="time" value="08:00">
+          </div>
+          <div class="field">
+            <label>Heure sortie 1 <span class="req">*</span></label>
+            <input type="time" value="12:00">
+          </div>
+        </div>
+        <div class="row cols-2">
+          <div class="field">
+            <label>Heure entrée 2 <span style="color:var(--muted)">(optionnel)</span></label>
+            <input type="time" value="13:00">
+          </div>
+          <div class="field">
+            <label>Heure sortie 2 <span style="color:var(--muted)">(optionnel)</span></label>
+            <input type="time" value="17:00">
+          </div>
+        </div>
+      </div>
+
+      <div class="divider"></div>
+
+      <!-- Approvers -->
+      <div class="field-section">
+        <div class="section-title">Chaîne hiérarchique</div>
+        <div class="row cols-1">
+          <div class="field">
+            <label>Email Chef Direct (N+1) <span class="req">*</span></label>
+            <input type="email" placeholder="chef.direct@valeo.com">
+          </div>
+          <div class="field">
+            <label>Email Responsable Service (N+2) <span class="req">*</span></label>
+            <input type="email" placeholder="resp.service@valeo.com">
+          </div>
+          <div class="field">
+            <label>Email Directeur Site (N+3) <span class="req">*</span></label>
+            <input type="email" placeholder="directeur@valeo.com">
+          </div>
+          <div class="field">
+            <label>Email Directeur RH (N+4) <span class="req">*</span></label>
+            <input type="email" placeholder="drh@valeo.com">
+          </div>
+        </div>
+      </div>
+
+      <!-- Submit -->
+      <button class="submit-btn">Soumettre la demande →</button>
+      <p class="submit-note">En soumettant, vous confirmez l'exactitude des informations. Service RH — Système automatisé.</p>
+    </div>
+  </div>
+
+</div>
+</body>
+</html>
