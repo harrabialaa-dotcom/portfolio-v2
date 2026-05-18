@@ -106,7 +106,7 @@ export default function Contact() {
                   />
                 </div>
                 <button onClick={handleSubmit} className="btn-primary" style={{ width: '100%', justifyContent: 'center' }}>
-                  Send message â†’
+                  Send message →
                 </button>
               </div>
             </div>
