@@ -1,19 +1,29 @@
-'use client'
+﻿'use client'
 import { useState } from 'react'
 
 const SOCIALS = [
-  { icon: '◎', label: 'LinkedIn', handle: 'linkedin.com/in/alaa-harrabi-220123183', href: 'https://www.linkedin.com/in/alaa-harrabi-220123183/' },
-  { icon: '◈', label: 'GitHub', handle: 'github.com/harrabialaa-dotcom', href: 'https://github.com/harrabialaa-dotcom' },
-  { icon: '✦', label: 'Email', handle: 'harrabialaa@gmail.com', href: 'mailto:harrabialaa@gmail.com' },
+  { icon: 'â—Ž', label: 'LinkedIn', handle: 'linkedin.com/in/alaa-harrabi-220123183', href: 'https://www.linkedin.com/in/alaa-harrabi-220123183/' },
+  { icon: 'â—ˆ', label: 'GitHub', handle: 'github.com/harrabialaa-dotcom', href: 'https://github.com/harrabialaa-dotcom' },
+  { icon: 'âœ¦', label: 'Email', handle: 'harrabialaa@gmail.com', href: 'mailto:harrabialaa@gmail.com' },
 ]
 
 export default function Contact() {
   const [sent, setSent] = useState(false)
+  const [sending, setSending] = useState(false)
   const [form, setForm] = useState({ name: '', email: '', message: '' })
 
-  const handleSubmit = () => {
+  const handleSubmit = async () => {
     if (!form.name || !form.email || !form.message) return
-    setTimeout(() => setSent(true), 400)
+    setSending(true)
+    try {
+      const res = await fetch('https://formspree.io/f/xjgzveqq', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+        body: JSON.stringify({ name: form.name, email: form.email, message: form.message }),
+      })
+      if (res.ok) setSent(true)
+    } catch {}
+    setSending(false)
   }
 
   return (
@@ -21,14 +31,14 @@ export default function Contact() {
       <div style={{ maxWidth: 1240, margin: '0 auto', display: 'grid' }} className="two-col-grid">
         {/* Left */}
         <div>
-          <div className="section-label">— CONTACT</div>
+          <div className="section-label">â€” CONTACT</div>
           <h2 className="font-display" style={{ fontSize: 'clamp(2.4rem, 5vw, 4rem)', lineHeight: 1.05, marginBottom: 20 }}>
             Let&apos;s build
             <br />
             <em style={{ color: 'var(--accent)', fontStyle: 'italic' }}>something great</em>
           </h2>
           <p style={{ color: 'var(--text-secondary)', lineHeight: 1.8, marginBottom: 44, fontSize: '1rem', maxWidth: 420 }}>
-            Whether you have an industrial automation challenge, a web project, or just want to connect — I&apos;m always open to interesting conversations.
+            Whether you have an industrial automation challenge, a web project, or just want to connect â€” I&apos;m always open to interesting conversations.
           </p>
 
           <div style={{ display: 'flex', flexDirection: 'column', gap: 14 }}>
@@ -39,14 +49,14 @@ export default function Contact() {
                   <div style={{ fontSize: '0.82rem', fontWeight: 400, color: 'var(--text-primary)', marginBottom: 2 }}>{s.label}</div>
                   <div className="font-mono" style={{ fontSize: '0.68rem', color: 'var(--text-muted)' }}>{s.handle}</div>
                 </div>
-                <span style={{ marginLeft: 'auto', color: 'var(--text-muted)', fontSize: '0.75rem' }}>→</span>
+                <span style={{ marginLeft: 'auto', color: 'var(--text-muted)', fontSize: '0.75rem' }}>â†’</span>
               </a>
             ))}
           </div>
 
           {/* Location card */}
           <div className="card-accent" style={{ padding: '18px 20px', marginTop: 16, display: 'flex', alignItems: 'center', gap: 14 }}>
-            <div style={{ width: 32, height: 32, borderRadius: 8, background: 'var(--accent-dim)', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '1rem' }}>⌖</div>
+            <div style={{ width: 32, height: 32, borderRadius: 8, background: 'var(--accent-dim)', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '1rem' }}>âŒ–</div>
             <div>
               <div style={{ fontSize: '0.82rem', fontWeight: 400 }}>Based in Tunis, Tunisia</div>
               <div className="font-mono" style={{ fontSize: '0.68rem', color: 'var(--text-muted)' }}>Open to remote & hybrid opportunities</div>
@@ -58,7 +68,7 @@ export default function Contact() {
         <div>
           {sent ? (
             <div className="card-accent" style={{ padding: 40, textAlign: 'center', borderRadius: 16 }}>
-              <div style={{ fontSize: '2.5rem', marginBottom: 16 }}>✦</div>
+              <div style={{ fontSize: '2.5rem', marginBottom: 16 }}>âœ¦</div>
               <h3 className="font-display" style={{ fontSize: '1.8rem', marginBottom: 12, color: 'var(--accent)' }}>Message sent!</h3>
               <p style={{ color: 'var(--text-secondary)', fontSize: '0.9rem' }}>Thank you for reaching out. I&apos;ll get back to you soon.</p>
               <button onClick={() => { setSent(false); setForm({ name: '', email: '', message: '' }) }}
@@ -96,7 +106,7 @@ export default function Contact() {
                   />
                 </div>
                 <button onClick={handleSubmit} className="btn-primary" style={{ width: '100%', justifyContent: 'center' }}>
-                  Send message →
+                  Send message â†’
                 </button>
               </div>
             </div>
@@ -106,3 +116,4 @@ export default function Contact() {
     </section>
   )
 }
+
