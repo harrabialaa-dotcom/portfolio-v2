@@ -68,7 +68,7 @@ export default function Contact() {
         <div>
           {sent ? (
             <div className="card-accent" style={{ padding: 40, textAlign: 'center', borderRadius: 16 }}>
-              <div style={{ fontSize: '2.5rem', marginBottom: 16 }}>âœ¦</div>
+              <div style={{ fontSize: '2.5rem', marginBottom: 16 }}>✉</div>
               <h3 className="font-display" style={{ fontSize: '1.8rem', marginBottom: 12, color: 'var(--accent)' }}>Message sent!</h3>
               <p style={{ color: 'var(--text-secondary)', fontSize: '0.9rem' }}>Thank you for reaching out. I&apos;ll get back to you soon.</p>
               <button onClick={() => { setSent(false); setForm({ name: '', email: '', message: '' }) }}
