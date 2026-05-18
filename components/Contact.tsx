@@ -2,9 +2,9 @@
 import { useState } from 'react'
 
 const SOCIALS = [
-  { icon: 'â—Ž', label: 'LinkedIn', handle: 'linkedin.com/in/alaa-harrabi-220123183', href: 'https://www.linkedin.com/in/alaa-harrabi-220123183/' },
-  { icon: 'â—ˆ', label: 'GitHub', handle: 'github.com/harrabialaa-dotcom', href: 'https://github.com/harrabialaa-dotcom' },
-  { icon: 'âœ¦', label: 'Email', handle: 'harrabialaa@gmail.com', href: 'mailto:harrabialaa@gmail.com' },
+  { icon: 'LI', label: 'LinkedIn', handle: 'linkedin.com/in/alaa-harrabi-220123183', href: 'https://www.linkedin.com/in/alaa-harrabi-220123183/' },
+  { icon: 'GH', label: 'GitHub', handle: 'github.com/harrabialaa-dotcom', href: 'https://github.com/harrabialaa-dotcom' },
+  { icon: '@', label: 'Email', handle: 'harrabialaa@gmail.com', href: 'mailto:harrabialaa@gmail.com' },
 ]
 
 export default function Contact() {
@@ -56,7 +56,7 @@ export default function Contact() {
 
           {/* Location card */}
           <div className="card-accent" style={{ padding: '18px 20px', marginTop: 16, display: 'flex', alignItems: 'center', gap: 14 }}>
-            <div style={{ width: 32, height: 32, borderRadius: 8, background: 'var(--accent-dim)', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '1rem' }}>âŒ–</div>
+            <div style={{ width: 32, height: 32, borderRadius: 8, background: 'var(--accent-dim)', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '1rem' }}>📍</div>
             <div>
               <div style={{ fontSize: '0.82rem', fontWeight: 400 }}>Based in Tunis, Tunisia</div>
               <div className="font-mono" style={{ fontSize: '0.68rem', color: 'var(--text-muted)' }}>Open to remote & hybrid opportunities</div>
