@@ -558,6 +558,7 @@ export default function Projects() {
   const showBackup   = filter === 'all' || filter === 'sysadmin'
   const showInactive = filter === 'all' || filter === 'powershell' || filter === 'automation'
   const showAI       = filter === 'all' || filter === 'ai' || filter === 'sysadmin'
+  const showMagic    = filter === 'all' || filter === 'ai' || filter === 'industrial'
   const showPLC      = filter === 'all' || filter === 'industrial' || filter === 'ai'
   const others       = filter === 'all' ? OTHER_PROJECTS : OTHER_PROJECTS.filter(p => p.category === filter)
 
@@ -771,6 +772,38 @@ export default function Projects() {
               'Reduces AD bloat and improves infrastructure hygiene through scheduled automation',
             ]}
             screens={INACTIVE_SCREENS}
+          />
+        </div>
+      )}
+
+
+      {showMagic && (
+        <div>
+          <FeaturedCard
+            number="08"
+            title="Magic Eye — AI Visual Inspection System"
+            subtitle="Valeo Tunisia · 2025 · AI · Industrial Vision"
+            badge="AI VISION"
+            accentColor="#7eecd8"
+            tags={['NVIDIA Jetson', 'Python', 'REST API', 'Modbus TCP', 'PLC', 'OpenCV', 'Deep Learning', 'Linux']}
+            desc="Industrial AI vision system for real-time quality inspection. Master Jetson aggregates CAM1+CAM2 feeds, runs AI top-surface defect detection, and coordinates 4 Slave Jetsons via REST API. Results sent to PLC via Modbus TCP to trigger OK/NOK motor actions with live Visual Inspection dashboard."
+            metrics={[
+              { v: '2',   l: 'Cameras',         sub: 'CAM1 + CAM2 top view' },
+              { v: '1+4', l: 'Jetson Units',    sub: 'Master + 4 Slaves' },
+              { v: 'TCP', l: 'Modbus Protocol', sub: 'PLC motor control' },
+              { v: 'AI',  l: 'Vision Models',   sub: 'Top + Side detection' },
+            ]}
+            highlights={[
+              'Master Jetson runs AI Model TOP for top-surface defect detection via CAM1 + CAM2',
+              'REST API coordination between Master and 4 Slave Jetsons running AI Model SIDE',
+              'Modbus TCP integration with PLC to trigger MOTOR OK/NOK in real time',
+              'Live Visual Inspection dashboard with defect overlays and sequence status',
+              'Full VLAN network architecture with EasyNAC and cybersecurity compliance',
+              'Multi-zone inspection: top surface + 4 side surfaces per production cycle',
+            ]}
+            screens={[
+              { src: '/screenshots/ai-line.png', label: 'Communication Architecture', desc: 'CAM1/CAM2 → Master Jetson → REST API → Slave Jetsons → Modbus TCP → PLC → Motors' },
+            ]}
           />
         </div>
       )}
