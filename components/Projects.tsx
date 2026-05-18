@@ -551,14 +551,14 @@ export default function Projects() {
     return () => obs.disconnect()
   }, [])
 
-  const showBadge  = filter === 'all' || filter === 'industrial'
+  const showBadge    = filter === 'all' || filter === 'automation'
   const showAD     = filter === 'all' || filter === 'sysadmin'
   const showInt    = filter === 'all' || filter === 'fullstack' || filter === 'web'
-  const showWin11  = filter === 'all' || filter === 'powershell'
+  const showWin11    = filter === 'all' || filter === 'powershell' || filter === 'automation'
   const showBackup   = filter === 'all' || filter === 'sysadmin'
-  const showInactive = filter === 'all' || filter === 'powershell'
+  const showInactive = filter === 'all' || filter === 'powershell' || filter === 'automation'
   const showAI       = filter === 'all' || filter === 'ai' || filter === 'sysadmin'
-  const showPLC      = filter === 'all' || filter === 'industrial'
+  const showPLC      = filter === 'all' || filter === 'industrial' || filter === 'ai'
   const others       = filter === 'all' ? OTHER_PROJECTS : OTHER_PROJECTS.filter(p => p.category === filter)
 
   return (
@@ -587,14 +587,14 @@ export default function Projects() {
 
       {/* ── FEATURED 01: EPIP ── */}
       {showPLC && (
-        <div className="reveal">
+        <div>
           <PLCCard />
         </div>
       )}
 
       {/* ── FEATURED 02: Badge Correction System ── */}
       {showBadge && (
-        <div className="reveal">
+        <div>
           <FeaturedCard
             number="02"
             title="Badge Correction System"
@@ -623,7 +623,7 @@ export default function Projects() {
 
       {/* ── FEATURED 02: Active Directory Home Lab ── */}
       {showAD && (
-        <div className="reveal">
+        <div>
           <FeaturedCard
             number="03"
             title="Active Directory Home Lab"
@@ -655,7 +655,7 @@ export default function Projects() {
 
       {/* ── FEATURED 03: Subcontractor Intervention System ── */}
       {showInt && (
-        <div className="reveal">
+        <div>
           <FeaturedCard
             number="04"
             title="Subcontractor Intervention System"
@@ -686,7 +686,7 @@ export default function Projects() {
 
       {/* ── FEATURED 04: Windows 11 Migration Tracker ── */}
       {showWin11 && (
-        <div className="reveal">
+        <div>
           <FeaturedCard
             number="05"
             title="Windows 11 Migration Tracker"
@@ -716,7 +716,7 @@ export default function Projects() {
 
       {/* ── FEATURED 05: Windows Server Backup ── */}
       {showBackup && (
-        <div className="reveal">
+        <div>
           <FeaturedCard
             number="06"
             title="Windows Server Backup Setup"
@@ -746,7 +746,7 @@ export default function Projects() {
       )}
 
       {showInactive && (
-        <div className="reveal">
+        <div>
           <FeaturedCard
             number="07"
             title="Inactive PC Monitoring Script"

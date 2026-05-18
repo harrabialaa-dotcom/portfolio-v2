@@ -1,4 +1,4 @@
-'use client'
+﻿'use client'
 import { useState, useEffect } from 'react'
 
 const LINKS = [
@@ -14,6 +14,7 @@ export default function Header() {
   const [scrolled, setScrolled] = useState(false)
   const [active, setActive] = useState('home')
   const [menuOpen, setMenuOpen] = useState(false)
+  const [resumePopup, setResumePopup] = useState(false)
 
   useEffect(() => {
     const onScroll = () => {
@@ -64,7 +65,7 @@ export default function Header() {
         </nav>
 
         {/* Desktop CTA */}
-        <a href="/CV_HARRABI_ALA.pdf" target="_blank" className="btn-outline desktop-nav" style={{ padding: '8px 18px', fontSize: '0.7rem' }}>
+        <a href="#" onClick={(e) => { e.preventDefault(); setResumePopup(true) }} className="btn-outline desktop-nav" style={{ padding: '8px 18px', fontSize: '0.7rem' }}>
           Resume ↗
         </a>
 
@@ -105,14 +106,69 @@ export default function Header() {
           </a>
         ))}
         <a
-          href="/CV_HARRABI_ALA.pdf" target="_blank"
-          onClick={() => setMenuOpen(false)}
+          href="#" onClick={(e) => { e.preventDefault(); setResumePopup(true); setMenuOpen(false) }}
           className="btn-primary"
           style={{ marginTop: 24, animation: menuOpen ? 'fadeUp 0.4s 0.4s both' : 'none' }}
         >
           Resume ↗
         </a>
       </div>
+
+      {/* Resume Popup */}
+      {resumePopup && (
+        <div
+          onClick={() => setResumePopup(false)}
+          style={{
+            position: 'fixed', inset: 0, zIndex: 9999,
+            background: 'rgba(5,12,28,0.85)', backdropFilter: 'blur(12px)',
+            display: 'flex', alignItems: 'center', justifyContent: 'center', padding: 24,
+          }}
+        >
+          <div
+            onClick={e => e.stopPropagation()}
+            style={{
+              background: 'rgba(15,30,60,0.98)',
+              border: '1px solid rgba(255,213,128,0.3)',
+              borderRadius: 16, padding: '40px 36px',
+              maxWidth: 420, width: '100%', textAlign: 'center',
+              boxShadow: '0 32px 80px rgba(0,0,0,0.6)',
+            }}
+          >
+            <div style={{ fontSize: '2.5rem', marginBottom: 16 }}>📬</div>
+            <h3 style={{ fontFamily: 'Cormorant Garamond', fontSize: '1.6rem', color: '#fff', marginBottom: 12 }}>
+              Let's Connect
+            </h3>
+            <p style={{ fontFamily: 'DM Mono', fontSize: '0.78rem', color: 'rgba(255,255,255,0.55)', lineHeight: 1.8, marginBottom: 28 }}>
+              Please contact me — it will be better to discuss more &amp; get a detailed CV.
+            </p>
+            <a
+              href="#contact"
+              onClick={() => setResumePopup(false)}
+              style={{
+                display: 'inline-block', padding: '12px 28px',
+                background: 'linear-gradient(135deg, #ffd580, #ffb830)',
+                borderRadius: 8, fontFamily: 'DM Mono', fontSize: '0.75rem',
+                color: '#05050a', fontWeight: 700, textDecoration: 'none',
+                letterSpacing: '0.05em', cursor: 'pointer',
+              }}
+            >
+              Contact Me ↗
+            </a>
+            <button
+              onClick={() => setResumePopup(false)}
+              style={{
+                display: 'block', margin: '16px auto 0',
+                background: 'none', border: 'none',
+                fontFamily: 'DM Mono', fontSize: '0.65rem',
+                color: 'rgba(255,255,255,0.3)', cursor: 'pointer',
+              }}
+            >
+              Close
+            </button>
+          </div>
+        </div>
+      )}
     </>
   )
 }
+
