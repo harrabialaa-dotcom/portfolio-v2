@@ -593,11 +593,43 @@ export default function Projects() {
         </div>
       )}
 
-      {/* ── FEATURED 02: Badge Correction System ── */}
-      {showBadge && (
+      {/* ── FEATURED 02: Magic Eye ── */}
+      {showMagic && (
         <div>
           <FeaturedCard
             number="02"
+            title="Magic Eye — AI Visual Inspection System"
+            subtitle="Valeo Tunisia · 2025 · AI · Industrial Vision"
+            badge="AI VISION"
+            accentColor="#7eecd8"
+            tags={['NVIDIA Jetson', 'Python', 'REST API', 'Modbus TCP', 'PLC', 'OpenCV', 'Deep Learning', 'Linux']}
+            desc="Industrial AI vision system for real-time quality inspection. Master Jetson aggregates CAM1+CAM2 feeds, runs AI top-surface defect detection, and coordinates 4 Slave Jetsons via REST API. Results sent to PLC via Modbus TCP to trigger OK/NOK motor actions with live Visual Inspection dashboard."
+            metrics={[
+              { v: '2',   l: 'Cameras',         sub: 'CAM1 + CAM2 top view' },
+              { v: '1+4', l: 'Jetson Units',    sub: 'Master + 4 Slaves' },
+              { v: 'TCP', l: 'Modbus Protocol', sub: 'PLC motor control' },
+              { v: 'AI',  l: 'Vision Models',   sub: 'Top + Side detection' },
+            ]}
+            highlights={[
+              'Master Jetson runs AI Model TOP for top-surface defect detection via CAM1 + CAM2',
+              'REST API coordination between Master and 4 Slave Jetsons running AI Model SIDE',
+              'Modbus TCP integration with PLC to trigger MOTOR OK/NOK in real time',
+              'Live Visual Inspection dashboard with defect overlays and sequence status',
+              'Full VLAN network architecture with EasyNAC and cybersecurity compliance',
+              'Multi-zone inspection: top surface + 4 side surfaces per production cycle',
+            ]}
+            screens={[
+              { src: '/screenshots/ai-line.png', label: 'Communication Architecture', desc: 'CAM1/CAM2 → Master Jetson → REST API → Slave Jetsons → Modbus TCP → PLC → Motors' },
+            ]}
+          />
+        </div>
+      )}
+
+      {/* ── FEATURED 03: Badge Correction System ── */}
+      {showBadge && (
+        <div>
+          <FeaturedCard
+            number="03"
             title="Badge Correction System"
             subtitle="Valeo Tunisia · 2024 — 2026 · industrial"
             badge="FLAGSHIP"
@@ -622,11 +654,11 @@ export default function Projects() {
         </div>
       )}
 
-      {/* ── FEATURED 02: Active Directory Home Lab ── */}
+      {/* ── FEATURED 04: Active Directory Home Lab ── */}
       {showAD && (
         <div>
           <FeaturedCard
-            number="03"
+            number="04"
             title="Active Directory Home Lab"
             subtitle="Personal Lab · VMware Workstation · sysadmin"
             badge="HOME LAB"
@@ -654,11 +686,11 @@ export default function Projects() {
         </div>
       )}
 
-      {/* ── FEATURED 03: Subcontractor Intervention System ── */}
+      {/* ── FEATURED 05: Subcontractor Intervention System ── */}
       {showInt && (
         <div>
           <FeaturedCard
-            number="04"
+            number="05"
             title="Subcontractor Intervention System"
             subtitle="Valeo Tunisia · 2026 · fullstack"
             badge="DEPLOYED"
@@ -685,11 +717,11 @@ export default function Projects() {
         </div>
       )}
 
-      {/* ── FEATURED 04: Windows 11 Migration Tracker ── */}
+      {/* ── FEATURED 06: Windows 11 Migration Tracker ── */}
       {showWin11 && (
         <div>
           <FeaturedCard
-            number="05"
+            number="06"
             title="Windows 11 Migration Tracker"
             subtitle="Valeo Tunisia · Multi-site · 2025 · powershell"
             badge="POWERSHELL"
@@ -715,11 +747,11 @@ export default function Projects() {
         </div>
       )}
 
-      {/* ── FEATURED 05: Windows Server Backup ── */}
+      {/* ── FEATURED 07: Windows Server Backup ── */}
       {showBackup && (
         <div>
           <FeaturedCard
-            number="06"
+            number="07"
             title="Windows Server Backup Setup"
             subtitle="Valeo Tunisia · Windows Server 2022 · sysadmin"
             badge="SYSADMIN"
@@ -749,7 +781,7 @@ export default function Projects() {
       {showInactive && (
         <div>
           <FeaturedCard
-            number="07"
+            number="08"
             title="Inactive PC Monitoring Script"
             subtitle="Valeo Tunisia · Active Directory · PowerShell Automation"
             badge="POWERSHELL"
@@ -777,36 +809,7 @@ export default function Projects() {
       )}
 
 
-      {showMagic && (
-        <div>
-          <FeaturedCard
-            number="08"
-            title="Magic Eye — AI Visual Inspection System"
-            subtitle="Valeo Tunisia · 2025 · AI · Industrial Vision"
-            badge="AI VISION"
-            accentColor="#7eecd8"
-            tags={['NVIDIA Jetson', 'Python', 'REST API', 'Modbus TCP', 'PLC', 'OpenCV', 'Deep Learning', 'Linux']}
-            desc="Industrial AI vision system for real-time quality inspection. Master Jetson aggregates CAM1+CAM2 feeds, runs AI top-surface defect detection, and coordinates 4 Slave Jetsons via REST API. Results sent to PLC via Modbus TCP to trigger OK/NOK motor actions with live Visual Inspection dashboard."
-            metrics={[
-              { v: '2',   l: 'Cameras',         sub: 'CAM1 + CAM2 top view' },
-              { v: '1+4', l: 'Jetson Units',    sub: 'Master + 4 Slaves' },
-              { v: 'TCP', l: 'Modbus Protocol', sub: 'PLC motor control' },
-              { v: 'AI',  l: 'Vision Models',   sub: 'Top + Side detection' },
-            ]}
-            highlights={[
-              'Master Jetson runs AI Model TOP for top-surface defect detection via CAM1 + CAM2',
-              'REST API coordination between Master and 4 Slave Jetsons running AI Model SIDE',
-              'Modbus TCP integration with PLC to trigger MOTOR OK/NOK in real time',
-              'Live Visual Inspection dashboard with defect overlays and sequence status',
-              'Full VLAN network architecture with EasyNAC and cybersecurity compliance',
-              'Multi-zone inspection: top surface + 4 side surfaces per production cycle',
-            ]}
-            screens={[
-              { src: '/screenshots/ai-line.png', label: 'Communication Architecture', desc: 'CAM1/CAM2 → Master Jetson → REST API → Slave Jetsons → Modbus TCP → PLC → Motors' },
-            ]}
-          />
-        </div>
-      )}
+
 
       {/* ── Other projects grid ── */}
       {others.length > 0 && (
