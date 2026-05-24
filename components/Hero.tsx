@@ -1,7 +1,7 @@
 'use client'
 import { useEffect, useRef, useState } from 'react'
 
-const ROLES = ['IT Specialist', 'Cybersecurity Officer', 'Business Apps Support', 'Infrastructure Lead']
+const ROLES = ['IT & Automation Specialist', 'Cybersecurity Officer', 'Business Apps Support', 'Infrastructure Lead']
 
 export default function Hero() {
   const [roleIdx, setRoleIdx] = useState(0)
@@ -137,13 +137,13 @@ export default function Hero() {
             </div>
 
             <p className="animate-fade-up delay-600" style={{ color: 'var(--text-secondary)', fontSize: '1.05rem', lineHeight: 1.8, maxWidth: 540, marginBottom: 44, opacity: 0 }}>
-              Results-driven IT Specialist with <strong style={{ color: 'var(--accent)' }}>6+ years of experience</strong> managing and optimizing enterprise infrastructures.
-              Expertise in SAP modules, cybersecurity, MES systems and IT strategy execution across industrial environments.
+              IT & Industrial Automation Specialist with <strong style={{ color: 'var(--accent)' }}>6+ years of experience</strong> bridging shopfloor OT and enterprise IT in automotive manufacturing.
+              Expertise in SAP, MES systems, OPC UA, cybersecurity and AI-powered industrial solutions.
             </p>
 
             <div className="animate-fade-up delay-700" style={{ display: 'flex', gap: 14, flexWrap: 'wrap', opacity: 0 }}>
               <a href="#projects" className="btn-primary">View my work</a>
-              <a href="#contact" className="btn-outline">Let&apos;s connect →</a>
+              <a href="#contact" className="btn-outline">Let&apos;s connect &rarr;</a>
             </div>
 
             <div className="animate-fade-up delay-700" style={{ marginTop: 72, display: 'flex', alignItems: 'center', gap: 14, opacity: 0 }}>
@@ -155,9 +155,9 @@ export default function Hero() {
           {/* RIGHT: stat cards */}
           <div className="stat-cards" style={{ display: 'flex', flexDirection: 'column', gap: 14, alignSelf: 'center' }}>
             {[
-              { value: '6+', label: 'Years Exp.', icon: '◈' },
-              { value: '12+', label: 'Projects', icon: '◉' },
-              { value: 'Valeo', label: 'Current Role', icon: '◇' },
+              { value: '6+', label: 'Years Exp.', icon: '\u25c8' },
+              { value: '8+', label: 'Projects', icon: '\u25c9' },
+              { value: 'Valeo', label: 'Current Role', icon: '\u25c7' },
             ].map((stat, i) => (
               <div key={stat.label} className="animate-float card" style={{ padding: '22px 26px', textAlign: 'center', animationDelay: `${i * 0.8}s`, minWidth: 110 }}>
                 <div style={{ fontSize: '0.7rem', color: 'var(--accent)', marginBottom: 6 }}>{stat.icon}</div>
