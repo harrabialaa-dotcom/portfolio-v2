@@ -69,9 +69,27 @@ const INACTIVE_SCREENS = [
   { src: '/screenshots/ps-inactive.png', label: 'IT Monitoring Report Email', desc: 'Automated HTML email alert: 48 inactive PCs detected across Manufacturing & Desktop OUs (over 3 days) — includes computer name, last activity, days inactive, ping status and OS details per site' },
 ]
 
+/* ── Vulnerability Early Detection screenshots ── */
+const CVE_RADAR_SCREENS = [
+  { src: '/screenshots/cve-radar-flow.png', label: 'Advisory Correlation Workflow', desc: 'Scheduled workflow collecting public vulnerability advisories, correlating them with a technology inventory, and preparing notifications' },
+  { src: '/screenshots/cve-radar-flow-designer.png', label: 'CVE Radar Flow Designer', desc: 'Workflow designer view showing the scheduled advisory collection, technology correlation, and update processing stages' },
+  { src: '/screenshots/cve-radar-dashboard-public-v2.png', label: 'CVE Radar Dashboard', desc: 'Complete dashboard capture with finding identifiers, affected technologies, severity, and ownership details redacted for public display' },
+]
+
+/* ── InfoSec Review Engine screenshots ── */
+const INFOSEC_SCREENS = [
+  { src: '/screenshots/infosec-review.png', label: 'New Review', desc: 'Create a review from a Unite ticket with request type, application, ownership, and business purpose' },
+  { src: '/screenshots/infosec-checklist.png', label: 'Checklist and Selection Policy', desc: '58 shared controls, policy health, tier coverage, and checklist workbook update' },
+  { src: '/screenshots/infosec-simulator.png', label: 'Policy Simulator', desc: 'Preview the assessment tier and selected controls for a request profile without saving' },
+  { src: '/screenshots/infosec-how-to-use.png', label: 'How to Use', desc: 'Seven-step guide to triage, assessment, evidence, findings, and decision workflow' },
+  { src: '/screenshots/infosec-ask-ai.png', label: 'InfoSec Help', desc: 'In-app assistant for general questions about using the review workflow' },
+  { src: '/screenshots/infosec-scoring.png', label: 'Scoring Model', desc: 'Configurable answer points, tier thresholds, review rules, and validity settings' },
+  { src: '/screenshots/infosec-users.png', label: 'User Administration', desc: 'Manage local accounts and assign administrator, reviewer, or viewer roles' },
+]
+
 const OTHER_PROJECTS: never[] = []
 
-const FILTERS = ['all', 'industrial', 'automation', 'sysadmin', 'web', 'fullstack', 'powershell', 'ai']
+const FILTERS = ['all', 'industrial', 'automation', 'sysadmin', 'web', 'fullstack', 'powershell', 'ai', 'security']
 
 /* ── RoadmapModal ── */
 function RoadmapModal({ onClose }: { onClose: () => void }) {
@@ -294,64 +312,48 @@ function EvidenceModal({
         </div>
 
         {/* Body: main image + thumbnail sidebar */}
-        <div className="modal-body" style={{ display: 'flex', flex: 1, overflow: 'hidden', minHeight: 0 }}>
+        <div className="modal-body" style={{ display: 'flex', flex: 1, overflow: 'hidden', minHeight: 0, height: 'min(72vh, 620px)' }}>
 
           {/* Left — main image */}
           <div style={{
-            flex: 1, position: 'relative',
+            flex: 1, position: 'relative', display: 'flex', flexDirection: 'column', minWidth: 0, minHeight: 0,
             background: 'rgba(0,0,0,0.4)',
-            display: 'flex', alignItems: 'center', justifyContent: 'center',
           }}>
-            <img
-              key={idx}
-              src={screens[idx].src}
-              alt={screens[idx].label}
-              style={{ maxWidth: '100%', maxHeight: '100%', objectFit: 'contain', display: 'block' }}
-            />
+            <div style={{ flex: 1, minHeight: 0, minWidth: 0, display: 'flex', alignItems: 'center', justifyContent: 'center', overflow: 'hidden', padding: 12, position: 'relative' }}>
+              <img
+                key={idx}
+                src={screens[idx].src}
+                alt={screens[idx].label}
+                style={{ width: '100%', height: '100%', objectFit: 'contain', display: 'block' }}
+              />
 
-            {/* caption */}
-            <div style={{
-              position: 'absolute', bottom: 0, left: 0, right: 0,
-              background: 'linear-gradient(transparent, rgba(5,15,40,0.92))',
-              padding: '48px 24px 18px',
-            }}>
-              <div style={{ fontFamily: 'DM Mono', fontSize: '0.62rem', color: accentColor, letterSpacing: '0.12em', marginBottom: 4 }}>
-                {screens[idx].label}
-              </div>
-              <div style={{ fontSize: '0.8rem', color: 'rgba(255,255,255,0.68)' }}>
-                {screens[idx].desc}
-              </div>
             </div>
 
-            {/* Prev arrow */}
-            {idx > 0 && (
-              <button onClick={prev} style={{
-                position: 'absolute', left: 14, top: '50%', transform: 'translateY(-50%)',
-                background: 'rgba(15,30,60,0.88)', border: `1px solid ${accentColor}45`,
-                borderRadius: 10, width: 42, height: 42, fontSize: '1.2rem',
-                color: accentColor, cursor: 'pointer',
-                display: 'flex', alignItems: 'center', justifyContent: 'center',
-                transition: 'all 0.15s',
-              }}
-                onMouseOver={e => { e.currentTarget.style.background = `${accentColor}20` }}
-                onMouseOut={e => { e.currentTarget.style.background = 'rgba(15,30,60,0.88)' }}
-              >‹</button>
-            )}
-
-            {/* Next arrow */}
-            {idx < screens.length - 1 && (
-              <button onClick={next} style={{
-                position: 'absolute', right: 14, top: '50%', transform: 'translateY(-50%)',
-                background: 'rgba(15,30,60,0.88)', border: `1px solid ${accentColor}45`,
-                borderRadius: 10, width: 42, height: 42, fontSize: '1.2rem',
-                color: accentColor, cursor: 'pointer',
-                display: 'flex', alignItems: 'center', justifyContent: 'center',
-                transition: 'all 0.15s',
-              }}
-                onMouseOver={e => { e.currentTarget.style.background = `${accentColor}20` }}
-                onMouseOut={e => { e.currentTarget.style.background = 'rgba(15,30,60,0.88)' }}
-              >›</button>
-            )}
+            {/* Caption stays outside the image so it never covers evidence. */}
+            <div style={{ flexShrink: 0, background: 'rgba(5,15,40,0.96)', padding: '12px 16px', display: 'flex', alignItems: 'center', gap: 14 }}>
+              {idx > 0 && (
+                <button onClick={prev} aria-label="Previous screenshot" style={{
+                  background: 'rgba(255,255,255,0.07)', border: `1px solid ${accentColor}45`,
+                  borderRadius: 8, width: 34, height: 34, flexShrink: 0, fontSize: '1.1rem',
+                  color: accentColor, cursor: 'pointer',
+                }}>‹</button>
+              )}
+              <div style={{ minWidth: 0, flex: 1 }}>
+                <div style={{ fontFamily: 'DM Mono', fontSize: '0.62rem', color: accentColor, letterSpacing: '0.12em', marginBottom: 4 }}>
+                  {screens[idx].label}
+                </div>
+                <div style={{ fontSize: '0.8rem', color: 'rgba(255,255,255,0.68)' }}>
+                  {screens[idx].desc}
+                </div>
+              </div>
+              {idx < screens.length - 1 && (
+                <button onClick={next} aria-label="Next screenshot" style={{
+                  background: 'rgba(255,255,255,0.07)', border: `1px solid ${accentColor}45`,
+                  borderRadius: 8, width: 34, height: 34, flexShrink: 0, fontSize: '1.1rem',
+                  color: accentColor, cursor: 'pointer',
+                }}>›</button>
+              )}
+            </div>
           </div>
 
           {/* Right — thumbnail sidebar */}
@@ -403,7 +405,7 @@ function EvidenceModal({
    Featured project card — compact, no inline gallery
 ───────────────────────────────────────────────── */
 function FeaturedCard({
-  number, title, subtitle, badge, tags, desc, metrics, highlights, screens, accentColor,
+  number, title, subtitle, badge, tags, desc, metrics, highlights, screens, accentColor, showEvidencePreview = false,
 }: {
   number: string; title: string; subtitle: string; badge: string;
   tags: string[]; desc: string;
@@ -411,6 +413,7 @@ function FeaturedCard({
   highlights: string[];
   screens: { src: string; label: string; desc: string }[];
   accentColor: string;
+  showEvidencePreview?: boolean;
 }) {
   const [modalOpen, setModalOpen] = useState(false)
 
@@ -521,6 +524,34 @@ function FeaturedCard({
             </div>
           </div>
 
+          {showEvidencePreview && (
+            <div style={{ marginTop: 24 }}>
+              <div className="font-mono" style={{ fontSize: '0.62rem', color: accentColor, letterSpacing: '0.15em', marginBottom: 12 }}>
+                PROJECT EVIDENCE · {screens.length} CAPTURES
+              </div>
+              <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))', gap: 12 }}>
+                {screens.map(screen => (
+                  <button
+                    key={screen.src}
+                    type="button"
+                    onClick={() => setModalOpen(true)}
+                    aria-label={`Review evidence: ${screen.label}`}
+                    style={{ padding: 0, overflow: 'hidden', textAlign: 'left', cursor: 'pointer', background: 'rgba(255,255,255,0.03)', border: '1px solid var(--border)', borderRadius: 8, color: 'inherit' }}
+                  >
+                    <img
+                      src={screen.src}
+                      alt={screen.label}
+                      style={{ width: '100%', aspectRatio: '16 / 9', objectFit: 'contain', display: 'block', background: '#050d1f' }}
+                    />
+                    <span style={{ display: 'block', padding: '10px 12px', fontSize: '0.76rem', color: 'var(--text-secondary)' }}>
+                      {screen.label}
+                    </span>
+                  </button>
+                ))}
+              </div>
+            </div>
+          )}
+
         </div>
       </div>
 
@@ -560,6 +591,8 @@ export default function Projects() {
   const showAI       = filter === 'all' || filter === 'ai' || filter === 'sysadmin'
   const showMagic    = filter === 'all' || filter === 'ai' || filter === 'industrial'
   const showPLC      = filter === 'all' || filter === 'industrial' || filter === 'ai'
+  const showCVERadar = filter === 'all' || filter === 'security'
+  const showInfoSec  = filter === 'all' || filter === 'security'
   const others       = filter === 'all' ? OTHER_PROJECTS : OTHER_PROJECTS.filter(p => p.category === filter)
 
   return (
@@ -808,6 +841,36 @@ export default function Projects() {
         </div>
       )}
 
+      {/* ── FEATURED 09: Vulnerability Early Detection ── */}
+      {showCVERadar && (
+        <div>
+          <FeaturedCard
+            number="09"
+            title="CVE Radar — Early Detection of Vulnerabilities"
+            subtitle="Dräxlmaier · Security Intelligence & Automation"
+            badge="SECURITY AUTOMATION"
+            accentColor="#38bdf8"
+            tags={['Power Automate', 'NVD', 'CISA KEV', 'Vendor Advisories', 'Technology Correlation', 'Email Alerts']}
+            desc="Automated vulnerability-intelligence workflow that collects public advisories on a schedule, normalizes technology names and aliases, and correlates findings with an approved technology inventory. Relevant findings are organized by affected technology and routed to responsible contacts for review. Public portfolio materials intentionally omit internal asset, ownership, and vulnerability-matching details."
+            metrics={[
+              { v: 'Hourly', l: 'Collection', sub: 'Scheduled advisory checks' },
+              { v: 'Multi-source', l: 'Intelligence', sub: 'NVD, CISA KEV & vendor feeds' },
+              { v: 'Inventory', l: 'Correlation', sub: 'Technology and alias matching' },
+              { v: 'Email', l: 'Notification', sub: 'Actionable owner follow-up' },
+            ]}
+            highlights={[
+              'Collects new and updated vulnerability advisories on a scheduled basis',
+              'Brings together NVD, CISA KEV, and vendor security advisories',
+              'Normalizes technology identifiers and aliases before correlation',
+              'Checks advisory data against an approved technology inventory',
+              'Organizes relevant findings by technology and responsible contact',
+              'Prepares targeted email notifications to support timely review',
+            ]}
+            screens={CVE_RADAR_SCREENS}
+          />
+        </div>
+      )}
+
 
 
 
@@ -846,7 +909,39 @@ export default function Projects() {
         </div>
       )}
 
-      {others.length === 0 && !showBadge && !showAD && !showInt && !showWin11 && !showBackup && !showInactive && (
+      {/* ── FEATURED 10: InfoSec Review Engine ── */}
+      {showInfoSec && (
+        <div>
+          <FeaturedCard
+            number="10"
+            title="InfoSec Review Engine"
+            subtitle="Security Assessment · Review Workflow"
+            badge="INFOSEC WORKFLOW"
+            accentColor="#38bdf8"
+            tags={['Security Reviews', 'Risk Scoring', 'Control Checklist', 'Evidence Tracking', 'Role-based Access', 'AI Help']}
+            desc="Security review workflow that turns a Unite ticket into a structured assessment. Reviewers classify the request, use policy-driven scoring to determine the assessment tier and selected controls, record evidence and findings, and prepare a decision. Administrators can manage the scoring model, shared checklist, and user roles."
+            metrics={[
+              { v: '58', l: 'Shared Controls', sub: 'Policy-driven checklist' },
+              { v: '5', l: 'Request Types', sub: 'Including AI update & phase out' },
+              { v: '3', l: 'Assessment Tiers', sub: 'Low, medium, and high' },
+              { v: '3', l: 'User Roles', sub: 'Admin, reviewer, viewer' },
+            ]}
+            highlights={[
+              'Create reviews from Unite tickets with application, owner, requester, and business purpose',
+              'Classify requests and calculate assessment tiers using configurable scoring rules',
+              'Select applicable controls from a shared 58-control checklist and policy triggers',
+              'Simulate policy outcomes before saving a review',
+              'Track evidence, findings, conditions, and decisions through the review workflow',
+              'Manage users and access with administrator, reviewer, and viewer roles',
+            ]}
+            screens={INFOSEC_SCREENS}
+          />
+        </div>
+      )}
+
+
+
+      {others.length === 0 && !showBadge && !showAD && !showInt && !showWin11 && !showBackup && !showInactive && !showCVERadar && !showInfoSec && (
         <div style={{ textAlign: 'center', padding: '60px 0', color: 'rgba(255,255,255,0.3)', fontFamily: 'DM Mono', fontSize: '0.8rem' }}>
           No projects in this category yet.
         </div>
@@ -854,5 +949,3 @@ export default function Projects() {
     </section>
   )
 }
-
-

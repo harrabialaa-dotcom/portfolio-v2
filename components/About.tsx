@@ -1,9 +1,9 @@
 ﻿'use client'
 import { useEffect, useRef, useState } from 'react'
 const TECH_GROUPS = [
-  { cat: 'Infrastructure', emoji: 'Server', items: ['Windows Server 2012-2016','Hyper-V','Active Directory','DNS / DHCP','IIS','SCCM','Altiris','Ubuntu / Linux'] },
   { cat: 'Security', emoji: 'Security', items: ['TISAX','CrowdStrike','Evidian','LENEL OnGuard','SSL/TLS','VPN','Symantec','IT Security Risk Mgmt'] },
-  { cat: 'SAP & ERP', emoji: 'SAP', items: ['SAP MM','SAP BW','SAP ERP S/4 HANA','MES','OPC Server'] },
+  { cat: 'Infrastructure', emoji: 'Server', items: ['Windows Server 2012-2016','Hyper-V','Active Directory','DNS / DHCP','IIS','SCCM','Altiris','Ubuntu / Linux'] },
+  { cat: 'Business & Industrial Systems', emoji: 'Systems', items: ['SAP MM','SAP BW','SAP ERP S/4 HANA','MES','OPC Server'] },
   { cat: 'Cloud & M365', emoji: 'Cloud', items: ['Azure Cloud','Azure Fundamentals','Microsoft 365','SharePoint Online','Google Workspace','Office 365'] },
   { cat: 'Networking', emoji: 'Network', items: ['TCP/IP','VoIP','Wireless','PRTG','GRAFANA','BOMGAR','Network Security'] },
   { cat: 'Dev & Scripting', emoji: 'Dev', items: ['PowerShell','PowerShell Automation','Python','ASP.NET MVC','Task Automation'] },
@@ -20,13 +20,13 @@ const STATS = [
 const VALUES = [
   { label: 'Reliability', desc: 'Enterprise environments demand near-zero downtime. Every solution built with resilience and redundancy.' },
   { label: 'Security', desc: 'Driving TISAX compliance and cybersecurity standards across industrial and business systems.' },
-  { label: 'Systems Thinking', desc: 'Seeing how parts interact from SAP modules to MES layers and optimizing the whole.' },
+  { label: 'Systems Thinking', desc: 'Connecting security architecture, business requirements and operational resilience across enterprise and industrial environments.' },
   { label: 'Leadership', desc: 'Led cross-functional IT teams, mentoring specialists and aligning delivery with business goals.' },
 ]
 const INFO = [
   { text: 'Sousse, Tunisia', sub: 'North Africa' },
-  { text: 'Business Applications & Cybersecurity Officer @ Valeo', sub: 'Automotive Industry' },
-  { text: 'SAP · MES · Security · Cloud', sub: 'Enterprise IT' },
+  { text: 'Regional Information Security Architect @ Dräxlmaier', sub: 'Automotive Industry' },
+  { text: 'Security Architecture · OT/IT · Risk', sub: 'Enterprise & Industrial Security' },
 ]
 function TechModal({ group, onClose }) {
   useEffect(() => {
@@ -76,7 +76,7 @@ export default function About() {
         <div className="section-label">— ABOUT ME</div>
         <div style={{ display: 'flex', alignItems: 'flex-end', justifyContent: 'space-between', flexWrap: 'wrap', gap: 24 }}>
           <h2 className="font-display" style={{ fontSize: 'clamp(2.4rem, 5vw, 4rem)', lineHeight: 1.05 }}>Results-driven, <em style={{ color: 'var(--accent)', fontStyle: 'italic' }}>enterprise-focused</em></h2>
-          <p style={{ color: 'var(--text-secondary)', maxWidth: 480, lineHeight: 1.8, fontSize: '0.95rem' }}>IT Specialist with <strong style={{ color: 'var(--text-primary)' }}>6+ years</strong> managing enterprise infrastructures. Expertise in SAP modules, cybersecurity, MES systems and IT strategy execution. Proven ability to enhance system reliability and lead cross-functional teams.</p>
+          <p style={{ color: 'var(--text-secondary)', maxWidth: 480, lineHeight: 1.8, fontSize: '0.95rem' }}>Results-driven Information Security Architect with <strong style={{ color: 'var(--text-primary)' }}>6+ years of experience</strong> securing enterprise and industrial environments across automotive manufacturing. Specialized in security architecture assessments, cyber risk management, software security reviews, OT/IT convergence security, vulnerability governance, and secure cloud and business application adoption. Proven ability to align business innovation with cybersecurity requirements while ensuring compliance, resilience, and operational continuity.</p>
         </div>
       </div>
       <div className="reveal" style={{ display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: 16, marginBottom: 48 }}>

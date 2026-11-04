@@ -1,7 +1,7 @@
 'use client'
 import { useEffect, useRef, useState } from 'react'
 
-const ROLES = ['IT & Automation Specialist', 'Cybersecurity Officer', 'Business Apps Support', 'Infrastructure Lead']
+const ROLES = ['Regional Information Security Architect AFRICA']
 
 export default function Hero() {
   const [roleIdx, setRoleIdx] = useState(0)
@@ -16,7 +16,7 @@ export default function Hero() {
     if (typing) {
       const type = () => {
         if (i <= target.length) { setDisplayed(target.slice(0, i)); i++; timeout = setTimeout(type, 65) }
-        else { timeout = setTimeout(() => setTyping(false), 2000) }
+        else if (ROLES.length > 1) { timeout = setTimeout(() => setTyping(false), 2000) }
       }
       type()
     } else {
@@ -133,12 +133,11 @@ export default function Hero() {
             {/* Company badge */}
             <div className="animate-fade-up delay-500" style={{ display: 'inline-flex', alignItems: 'center', gap: 10, background: 'var(--surface)', border: '1px solid var(--border-gold)', borderRadius: 8, padding: '8px 16px', marginBottom: 32, opacity: 0 }}>
               <div style={{ width: 8, height: 8, borderRadius: 2, background: 'var(--accent)' }} />
-              <span className="font-mono" style={{ fontSize: '0.72rem', color: 'var(--text-secondary)', letterSpacing: '0.08em' }}>@ Valeo — Business Apps & Cybersecurity</span>
+              <span className="font-mono" style={{ fontSize: '0.72rem', color: 'var(--text-secondary)', letterSpacing: '0.08em' }}>@ Dräxlmaier — Information Security</span>
             </div>
 
             <p className="animate-fade-up delay-600" style={{ color: 'var(--text-secondary)', fontSize: '1.05rem', lineHeight: 1.8, maxWidth: 540, marginBottom: 44, opacity: 0 }}>
-              IT & Industrial Automation Specialist with <strong style={{ color: 'var(--accent)' }}>6+ years of experience</strong> bridging shopfloor OT and enterprise IT in automotive manufacturing.
-              Expertise in SAP, MES systems, OPC UA, cybersecurity and AI-powered industrial solutions.
+              Regional Information Security Architect with <strong style={{ color: 'var(--accent)' }}>6+ years of experience</strong> driving cybersecurity governance, security architecture reviews, risk assessments and secure digital transformation initiatives within global automotive environments. Expertise in Information Security Architecture, OT/IT Security, Application Security Reviews, Risk Management, Vulnerability Management and Security Compliance.
             </p>
 
             <div className="animate-fade-up delay-700" style={{ display: 'flex', gap: 14, flexWrap: 'wrap', opacity: 0 }}>
@@ -157,7 +156,7 @@ export default function Hero() {
             {[
               { value: '6+', label: 'Years Exp.', icon: '\u25c8' },
               { value: '8+', label: 'Projects', icon: '\u25c9' },
-              { value: 'Valeo', label: 'Current Role', icon: '\u25c7' },
+              { value: 'Dräxlmaier', label: 'Current Role', icon: '\u25c7' },
             ].map((stat, i) => (
               <div key={stat.label} className="animate-float card" style={{ padding: '22px 26px', textAlign: 'center', animationDelay: `${i * 0.8}s`, minWidth: 110 }}>
                 <div style={{ fontSize: '0.7rem', color: 'var(--accent)', marginBottom: 6 }}>{stat.icon}</div>
