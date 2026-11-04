@@ -5,12 +5,12 @@ import Footer from '@/components/Footer'
 import Cursor from '@/components/Cursor'
 
 export const metadata: Metadata = {
-  title: 'Alaa Harrabi · IT & Industrial Automation Specialist',
-  description: 'IT & Industrial Automation Specialist with 6+ years at Valeo — SAP, MES, OT/IT Integration, Cybersecurity & AI-powered industrial systems.',
-  keywords: 'SAP, MES, OPC UA, TISAX, Industrial Automation, IT Specialist, Valeo, Tunisia, DELMIA Apriso, SCADA',
+  title: 'Alaa Harrabi · Regional Information Security Architect Africa',
+  description: 'Regional Information Security Architect with 6+ years of experience in security architecture, OT/IT security, risk management and cybersecurity governance.',
+  keywords: 'Information Security Architecture, Security Risk Assessment, Application Security Reviews, Cybersecurity Governance, OT/IT Security, Vulnerability Management, Secure SDLC, Cloud Security, Dräxlmaier, Africa',
   openGraph: {
-    title: 'Alaa Harrabi · IT & Industrial Automation Specialist',
-    description: 'Bridging shopfloor OT and enterprise IT in automotive manufacturing.',
+    title: 'Alaa Harrabi · Regional Information Security Architect Africa',
+    description: 'Cybersecurity governance, security architecture and secure digital transformation across automotive environments.',
     url: 'https://portfolio-v2-liart-three.vercel.app',
     type: 'website',
   },
